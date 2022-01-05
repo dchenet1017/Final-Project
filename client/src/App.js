@@ -18,7 +18,7 @@ function App() {
   const [user, setuser] = useState("")
   const [session, setSession] = useState("")
   // This Use state is loggin in. 
-  const [loginDetails, setloginDetails] = useState({ email: "", password: "" })
+  const [loginDetails, setloginDetails] = useState({ email: "dimitri2@dimitri.com", password: "12345" })
 
   const [newUser, setnewUser] = useState({
     name: "",
@@ -56,7 +56,7 @@ function App() {
   useEffect(() => {
     fetch("/nfts")
     .then(r => r.json())
-    .then(data => setnft(data))
+    .then(data => SetNftData(data))
   },[])
 
   // Logs a user out  and sets use state to null 
@@ -137,7 +137,6 @@ function App() {
       nft.id === updatedNft.id ? updatedNft : nft
     )));
   };
-
   return (
     <div className="App">
             <Header changeHanldler={changeHanldler} submitHandler={submitHandler} loginDetails={loginDetails} user={user} handleLogout={handleLogout} />
@@ -145,8 +144,8 @@ function App() {
         <Route path="/" element={<Home/>}/>
         <Route path="/about/*" element={<About />} />
         <Route path="/signup/*" element={<SignupForm newUserSubmitHandler={newUserSubmitHandler} newUserChangeHanldler={newUserChangeHanldler} newUser={newUser} />} />
-        <Route exact path="/nfts" element={<CardContainer nftData={nft} setDOMUpdater={setDOMUpdater} handleDeleteNft={handleDeleteNft} user={user}  />} />
-        <Route path="/nft/*" element={<FullNFt updateNFt={updateNft} setDOMUpdater={setDOMUpdater} user={user} nft={nftData} />} />
+        <Route exact path="/nfts" element={<CardContainer nftData={nftData} setDOMUpdater={setDOMUpdater} handleDeleteNft={handleDeleteNft} user={user}  />} />
+        <Route path="/nfts/*" element={<FullNFt updateNFt={updateNft} setDOMUpdater={setDOMUpdater} user={user} nft={nftData} />} />
         <Route path="/nft-form" element={<AddNftForm setDOMUpdater={setDOMUpdater} handleAddNft={handleAddNft} user={user}/>} />
         {/* <Route path="/nft-pics" element={<MoreNFTPic />}></Route> */}
       </Routes>

@@ -12,7 +12,7 @@ console.log(nftData)
         <div>
            <div>{nftData.map((nft) => {
                return (
-                   <NftCard setDOMUpdater={setDOMUpdater} key={nft.id} user={user} nft={nft} onDeleteNft={handleDeleteNft}/>
+                   <NftCard setDOMUpdater={setDOMUpdater}  user={user} nft={nft} onDeleteNft={handleDeleteNft}/>
                )
            })}
            </div>

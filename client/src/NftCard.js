@@ -6,7 +6,7 @@ import ReadMoreIcon from '@mui/icons-material/ReadMore';
 
 function NftCard({  setDOMUpdater, nft, user, onDeleteNft }) {
   const [counter, setcounter] = useState(0)
-  // const [like, setlike] = useState(false)
+  const [like, setlike] = useState(false)
 
   function ratingAddHandler(e) {
     if (counter == 0) { setcounter(1) }
@@ -39,19 +39,21 @@ function NftCard({  setDOMUpdater, nft, user, onDeleteNft }) {
       }
     });
   }
-
+console.log(nft)
   return (
     <div className="nft-card">
-      {/* <p id="nft-model">{nft.model}</p>
-      <p id="nft-year"> Year: {nft.year}</p>
+      <p id="nft-model">{nft.name}</p>
+      <p id="nft-year">{nft.price}</p>
       <img src={nft.photo} alt="" className="nft-pic" />
-      {nft.owned_by.id === user.id ? <p>Your nft</p> : <p>Owner: {nft.owned_by.name}</p>}
-      <p>{nft.description}</p>
+      {/* {nft.owned_by.id === user.id ? <p>Your nft</p> : <p>Owner: {nft.owned_by.name}</p>} */}
+      <p>{nft.properties1}</p>
+      <p>{nft.properties2}</p>
+      <p>{nft.properties3}</p>
       <p>Number of reviews: {nft.total_reviews}</p>
-      <Rating id="star-rating" name="half-rating" defaultValue={nft.average_score} onClick={ratingAddHandler} precision={0.5}>
-      </Rating>
-      {nft.owned_by.id === user.id? <DeleteIcon id="delete-btn" onClick={handleDeleteNft} />: null}
-      <Link  to={"/nfts/" + nft.id}><ReadMoreIcon onClick={() => setDOMUpdater(Math.random())} id="more-btn" /></Link> */}
+      {/* <Rating id="star-rating" name="half-rating" defaultValue={nft.average_score} onClick={ratingAddHandler} precision={0.5}> 
+      </Rating>*/}
+      {/* {nft.owned_by.id === user.id? <DeleteIcon id="delete-btn" onClick={handleDeleteNft} />: null} */}
+      <Link  to={"/nfts/" + nft.id}><ReadMoreIcon onClick={() => setDOMUpdater(Math.random())} id="more-btn" /></Link>
     </div>
   )
 }

@@ -25,7 +25,7 @@ function Modal({setIsModalOpen, changeHanldler, submitHandler, loginDetails }) {
                             <div>
                                 <label>Email</label>
                                 <div>
-                                    <input className="login-input" value={loginDetails.email} onChange={changeHanldler} name="email" type="email" />
+                                    <input className="login-input" value={loginDetails.email} placeholder="dimitri2@dimitri.com" onChange={changeHanldler} name="email" type="email" />
                                 </div>
                             </div>
                         </div>

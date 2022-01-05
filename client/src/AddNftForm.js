@@ -3,10 +3,15 @@ import React, {useState} from 'react'
 function AddNftForm({ handleAddNft, user }) {
   
   const initialState = {
-    model: "",
-    year: "",
-    description: "",
+    name: "",
+    owner: "",
+    price: "",
     photo: "",
+    properties1: "",
+    properties2: "",
+    properties3: "",
+    rarity_rank: "",
+    rarity_score: "", 
   };
 
   const [formData, setFormData] = useState(initialState);
@@ -22,6 +27,7 @@ function AddNftForm({ handleAddNft, user }) {
   }
 
   function handleChange(e) {
+    console.log(formData)
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -36,11 +42,7 @@ function AddNftForm({ handleAddNft, user }) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: formData.model,
-        owned_by_id: user.id,
-        photo: formData.photo,
-        description: formData.description,
-        year: formData.year
+       name: formData.name, owner: formData.owner, price: formData.price, photo: formData.photo,   properties1: formData.properties1,   properties2: formData.properties2, properties3: formData.properties3, rarity_rank: formData.rarity_rank, rarity_score: formData.rarity_score, user_id: user.id
       })
     }).then(console.log("ddddddd"))
       .then(handleErrors)
@@ -56,10 +58,16 @@ function AddNftForm({ handleAddNft, user }) {
       <div className="sign-up-form">
         <h1>Add New Nft <br /><span id="fill-out-form">Please fill this form to add new nft</span></h1>
         <form onSubmit={handleSubmit} >
-          <input className="input-box" placeholder="Model" name="model" onChange={handleChange} value={formData.model} />
-          <input className="input-box" placeholder="Year" name="year" onChange={handleChange} value={formData.year} />
-          <input className="input-box" placeholder="Description" name="description" onChange={handleChange} value={formData.description} />
-          <input className="input-box" placeholder="Car URL" name="photo" onChange={handleChange} value={formData.photo} />
+          <input className="input-box" placeholder="Name" name="name" onChange={handleChange} value={formData.name} />
+          <input className="input-box" placeholder="Owner" name="owner" onChange={handleChange} value={formData.owner} />
+          <input className="input-box" placeholder="Price" name="price" onChange={handleChange} value={formData.price} />
+          <input className="input-box" placeholder="Nft URL" name="photo" onChange={handleChange} value={formData.photo} />
+          <input className="input-box" placeholder="Properties1" name="properties1" onChange={handleChange} value={formData.properties1} />
+          <input className="input-box" placeholder="Properties2" name="properties2" onChange={handleChange} value={formData.properties2} />
+          <input className="input-box" placeholder="Properties3" name="properties3" onChange={handleChange} value={formData.properties3} />
+          <input className="input-box" placeholder="Rarity Rank" name="rarity_rank" onChange={handleChange} value={formData.rarity_rank} />
+          <input className="input-box" placeholder="Rarity score" name="rarity_score" onChange={handleChange} value={formData.rarity_score} />
+
           <button type="submit" className="sign-btn">Save Changes</button>
         </form>
       </div>

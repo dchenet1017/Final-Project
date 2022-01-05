@@ -28,7 +28,7 @@ function TopNav({changeHanldler, submitHandler, loginDetails, user, handleLogout
                 <AppBar position="static" id="nav-container">
                     <Toolbar>
                         <Typography variant="h  6" component="div" sx={{ flexGrow: 1 }}>
-                        <img id="logo" src= "/carmedialogo.jpeg"/>
+                        <img id="logo" src= "/NFT.png"/>
                         </Typography>
                         <Link className="nav-link" to="/"><Button color="inherit">Home</Button></Link>
                         <Link className="nav-link" to="/nfts"><Button color="inherit">NFT</Button></Link>

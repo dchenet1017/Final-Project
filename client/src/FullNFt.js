@@ -1,18 +1,29 @@
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Reviews from './Reviews'
 import { Rating } from '@mui/material'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import ReviewAdder from './ReviewAdder'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
 
-function FullNFT({ updateNft, nft, user, setDOMUpdater }) {
-    console.log(nft)
+function FullNFT({ updateNft, user, setDOMUpdater }) {
+    let location =useLocation()
     const [UpdateRequested, setUpdateRequested] = useState(false)
     const [nftUpdateObject, setcarUpdateObject] = useState({
     })
+
+    const [nft, setNft] = useState ()
+
+    useEffect(() => {
+        fetch(`${location.pathname}`)
+            .then((r) => r.json())
+            .then((data) => setNft(data))
+    }, [location.pathname]);
+
+
+
 
     function updateChangeHandler(e) {
         setcarUpdateObject(data => data = { ...data, [e.target.name]: e.target.value })
@@ -85,24 +96,27 @@ function FullNFT({ updateNft, nft, user, setDOMUpdater }) {
 
                     <h3 id="favorite">Favorite NFT</h3>
                     <hr id="hr-line" />
-                    {nft.favorite_nft.map((nft) => <p id="nav-nft-model">{nft.model} <br /> <img id="nav-pic" src={nft.photo} alt="" /></p>)}
                 </div>
 
                 <div id="more-card" >
-                    {<FavoriteIcon onClick={handleLikeClick} id={nft.favorite ? "like-color" : null} />}
                     
 
-                    {UpdateRequested ? <> <br /> <label>NFT model: </label>   <input value={nftUpdateObject.model} onChange={updateChangeHandler} placeholder={nft.model} name='model'  ></input> </> : <h2 className="more-nft-model">{nft.model}</h2>}
+                    {UpdateRequested ? <> <br /> <label>NFT model: </label>   <input value={nft.model} onChange={updateChangeHandler} placeholder={nft.model} name='model'  ></input> </> : <h2 className="more-nft-model">{nft.model}</h2>}
                     <Link to={"/nft-pics"}><img src={nft.photo} alt="" className="more-nft-pic" /></Link>
-                    <Rating name="read-only" value={nft.average_score} readOnly />
+                    <Rating value={nft.average_score} />
                     <br />
                     <p>Number of reviews: {nft.total_reviews}</p>
-                    {UpdateRequested ? <> <br /> <label>NFT photo url: </label>   <input value={nftUpdateObject.photo} onChange={updateChangeHandler} placeholder={nft.photo} name='photo'  ></input> </> : null}
-                    {UpdateRequested ? <> <br /> <label>{nft.owned_by.name}'s  </label>   <input value={nftUpdateObject.model} onChange={updateChangeHandler} placeholder={nft.model} name='model'  ></input> </> : <p>{nft.owned_by.name}'s   {nft.model}</p>}
-                    {UpdateRequested ? <> <br /> <label>NFT year: </label>   <input value={nftUpdateObject.year} onChange={updateChangeHandler} placeholder={nft.year} name='year'  ></input> </> : <p>Year: {nft.year}</p>}
-                    {UpdateRequested ? <> <br /> <label>nft description: </label>   <textarea value={nftUpdateObject.description} onChange={updateChangeHandler} placeholder={nft.description} name='description'  ></textarea> </> : <p>Description: {nft.description}</p>}
-                    {nft.owned_by.id === user.id ? UpdateRequested ? <button onClick={updateSubmitHandler} >Update</button> : <button type="button" onClick={() => setUpdateRequested(!UpdateRequested)} >Would You like to update?</button> : null}
-                    <Link to={"/nfts"}><ArrowBackIcon onClick={() => setDOMUpdater(Math.random())} id="more-btn" /></Link>
+                    <p>Name: {nft.name}</p>
+                    <p>Owner :{nft.owner}</p>
+                    <p> Ξ {nft.price} Ethereum</p>
+                    <p>Properites: {nft.properties1}</p>
+                    <p>Properties: {nft.properties2}</p>
+                    <p>Properties: {nft.properties3}</p>
+                    <p>Rarity Rank: {nft.rarity_rank}</p>
+                    <p>Rarity Score: {nft.rarity_score}</p>
+
+
+
                     <ReviewAdder setDOMUpdater={setDOMUpdater} nft={nft} user={user} />
 
                 </div>
