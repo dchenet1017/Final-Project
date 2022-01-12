@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import FullNFt from './FullNFt';
 import AddNftForm from './AddNftForm';
 import Home from './Home';
+// import Login from './Login';
 
 
 function App() {
@@ -147,6 +148,7 @@ function App() {
         <Route exact path="/nfts" element={<CardContainer nftData={nftData} setDOMUpdater={setDOMUpdater} handleDeleteNft={handleDeleteNft} user={user}  />} />
         <Route path="/nfts/*" element={<FullNFt updateNFt={updateNft} setDOMUpdater={setDOMUpdater} user={user} nft={nftData} />} />
         <Route path="/nft-form" element={<AddNftForm setDOMUpdater={setDOMUpdater} handleAddNft={handleAddNft} user={user}/>} />
+        {/* <Route path="/login" element={<Login  />}/> */}
         {/* <Route path="/nft-pics" element={<MoreNFTPic />}></Route> */}
       </Routes>
     </div>
